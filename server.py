@@ -16,7 +16,6 @@ def run_server():
     usernames = {}
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     try:
         server.bind(ADDR)
     except:
@@ -29,12 +28,6 @@ def run_server():
             if message_len:
                 message_len = int(message_len)
                 message = conn.recv(message_len).decode(FORMAT)
-        #print (message)
-        #print(addr)
-        #print(conn)
-        #conn.send("[MESSAGE RECEIVED]".encode(FORMAT))
-            #if message == '!LOGS':
-                #print(message_log)
             try:
                 messages.put((message, addr, conn))
                 message_log.append({addr, message})
@@ -50,17 +43,11 @@ def run_server():
                     clients.append(conn)
                     usernames.update({conn: message})
                 for client in clients:
-                #print(client)
-                    #print (addr)
                     try:
                         user = usernames[conn]
                         client.send(f"<{str(user)}> {message}".encode(FORMAT))
                     except:
                         clients.pop(client)
-                    #print(message)
-
-#def client():
-    #exec(open("client.py").read())
 
     def start():
         server.listen()
@@ -74,6 +61,4 @@ def run_server():
             thread.start()
             thread_brdcst = threading.Thread(target = broadcast)
             thread_brdcst.start()
-            #thread_client = threading.Thread(target = client)
-            #thread_client.start()
     start()
