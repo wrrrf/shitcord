@@ -2,7 +2,6 @@ import threading
 from server import run_server
 from client import client_start, client_send, received_messages
 from flask import Flask, render_template, request, send_from_directory
-import pandas as pd
 from turbo_flask import Turbo
 import time
 
