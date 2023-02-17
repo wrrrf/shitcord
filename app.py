@@ -36,9 +36,6 @@ def submit_message():
 start_client = threading.Thread(target = client_start)
 start_client.start()
 
-#client_send = threading.Thread(target = client_send)
-#client_send.start()
-
 if __name__ == '__main__':
     app.run(
         debug = False
