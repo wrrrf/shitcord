@@ -17,8 +17,6 @@ message = ()
 
 def client_start():
 
-    #old_message = ()
-
     global client
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -55,6 +53,4 @@ def client_send(input_msg):
         send(message)
         if message == DISCONNECT_MESSAGE:
             exit()
-
-
     enter()
