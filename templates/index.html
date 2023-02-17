@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+
+
+
+{% endblock head %}
+
+{% block body %}
+
+<div>
+    <form action="{{ url_for('submit_message') }}" method="post">
+        <label for="chatbox"></label>
+        <input type="text" id="chatbox" name="chatbox" placeholder="Say Something!">
+        <button type="submit" onclick="submit()" id="submit_button">Send -></button>
+    </form>
+
+</div>
+
+<h1>
+    <button onclick="performPost()" >Refresh messages</button>
+    <button onclick="autoRefresh()" >Automagically refresh messages (@ 5 sec. interval)</button>
+</h1>
+
+<script>
+    function submit() {
+        $.ajax({
+            type: "POST",
+            url: "{{ url_for('submit_message') }}",
+            success: function(response) {
+                $("chat").html(response);
+            }
+        })
+    }
+</script>
+
+<script>
+    function autoRefresh() {
+        setInterval(performPost, 5000)
+    }
+</script>
+
+<script>
+    function performPost() {
+        $.ajax({
+            type: "POST",
+            url: "{{ url_for('create_file') }}",
+            success: function(response) {
+                $("#chat").html(response);
+            }
+        })
+    }
+</script>
+
+<div id="chat">
+    {% for message in message_recv %}
+        <p>{{ message }}</p>
+    {% endfor %}
+</div>
+
+{% endblock body %}
