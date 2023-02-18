@@ -26,12 +26,9 @@
     function submit() {
         $.ajax({
             type: "POST",
-            url: "{{ url_for('submit_message') }}",
-            success: function(response) {
-                $("chat").html(response);
-            }
+            url: "{{ url_for('submit_message') }}"
         })
-        console.log('message sent!)
+        console.log('message sent!')
     }
 </script>
 
