@@ -23,6 +23,7 @@
 <script>
     function lock_form() {
         document.getElementById('enter').submit()
+        console.log('form submitted!')
     }
 </script>
 
@@ -32,6 +33,7 @@
             type: "POST",
             url: "{{ url_for('submit_message') }}",
         })
+        console.log('message send!')
     }
 </script>
 
@@ -50,6 +52,7 @@
                 $("#chat").html(response);
             }
         })
+        console.log('message received')
     }
 </script>
 
