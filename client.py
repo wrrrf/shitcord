@@ -47,10 +47,12 @@ def client_send(input_msg):
     def enter():
 
         global DISCONNECT_MESSAGE
-
-        message = input_msg
-        print(message)
-        send(message)
-        if message == DISCONNECT_MESSAGE:
-            exit()
+        try:
+            message = input_msg
+            print(message)
+            send(message)
+            if message == DISCONNECT_MESSAGE:
+                exit()
+        except:
+            return('Failed')
     enter()
