@@ -27,9 +27,12 @@ def create_file():
 
 @app.route('/submit_message', methods = ['GET', 'POST'])
 def submit_message():
-    submitted_message = (request.form.get('chatbox'))
-    print(submitted_message)
-    client_send(submitted_message)
+    submitted_message = (request.form.get('text'))
+    if submitted_message != (None):
+        print(submitted_message)
+        client_send(submitted_message)
+    else:
+        pass
     return ('', 204)
 
 
