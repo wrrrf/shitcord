@@ -50,7 +50,7 @@
             url: "{{ url_for('create_file') }}",
             success: function(response) {
                 $("#chat").html(response);
-                console.log('message: ', response);
+                console.log(response);
             }
         })
         console.log('message received')
