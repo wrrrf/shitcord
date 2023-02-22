@@ -22,9 +22,9 @@
 
 <script>
     function lock_form() {
-        var form_content = (document.getElementById('enter'))
-        form_content.submit()
+        document.getElementById('enter').submit()
         console.log('form submitted!')
+        var form_content = (document.getElementById('enter'))
         console.log(form_content)
     }
 </script>
