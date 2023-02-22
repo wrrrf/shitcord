@@ -54,5 +54,5 @@ def client_send(input_msg):
             if message == DISCONNECT_MESSAGE:
                 exit()
         except:
-            return('Failed')
+            print('Failed')
     enter()
