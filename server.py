@@ -56,6 +56,7 @@ def run_server():
         server.listen()
         while True:
             conn, addr = server.accept()
+            print(f'{conn} connected!')
             for message in message_log:
                 conn.send(str(message).encode(FORMAT))
             conn.send('[CONNECTED]'.encode(FORMAT))
