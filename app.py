@@ -32,7 +32,7 @@ def submit_message():
         print(submitted_message)
         client_send(submitted_message)
     else:
-        pass
+        print('none')
     return ('', 204)
 
 
