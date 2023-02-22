@@ -24,8 +24,8 @@ def client_start():
 
     while True:
         message = (client.recv(2048).decode(FORMAT))
-        received_messages.append((message))
-        print (message)
+        received_messages.append(message)
+        print ('message received!: ' + (message.decode(FORMAT))
 
 def client_send(input_msg):
 
