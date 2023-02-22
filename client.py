@@ -55,4 +55,5 @@ def client_send(input_msg):
                 exit()
         except:
             print('Failed')
+            return()
     enter()
