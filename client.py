@@ -43,13 +43,13 @@ def client_send(input_msg):
         send_length += b' ' * (HEADER - len(send_length))
         client.send(send_length)
         client.send(message)
+        print('message sent!: ' + message)
 
     def enter():
 
         global DISCONNECT_MESSAGE
         try:
             message = input_msg
-            print(message)
             send(message)
             if message == DISCONNECT_MESSAGE:
                 exit()
