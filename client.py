@@ -40,7 +40,7 @@ def client_send(input_msg):
         send_length += b' ' * (HEADER - len(send_length))
         client.send(send_length)
         client.send(message)
-        print('message sent!: ' + message)
+        print('message sent!: ' + (message.decode(FORMAT)))
 
     def enter():
 
