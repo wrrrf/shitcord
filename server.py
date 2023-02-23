@@ -54,6 +54,7 @@ def run_server():
 
     def start():
         server.listen()
+        print('SERVER STARTED!')
         while True:
             conn, addr = server.accept()
             print(f'{conn} connected!')
