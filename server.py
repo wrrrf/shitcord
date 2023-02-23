@@ -4,6 +4,7 @@ import queue
 import datetime
 
 def run_server():
+    print('STARTING SERVER')
     PORT = 5051
     SERVER = ''
     ADDR = (SERVER, PORT)
@@ -16,11 +17,7 @@ def run_server():
     usernames = {}
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    try:
-        server.bind(ADDR)
-    except:
-        print('SERVER FAILED TO BIND')
-        return()
+    server.bind(ADDR)
 
     def receive(conn, addr):
         connected = True
