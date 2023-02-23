@@ -19,6 +19,7 @@ def run_server():
     try:
         server.bind(ADDR)
     except:
+        print('SERVER FAILED TO BIND')
         return()
 
     def receive(conn, addr):
