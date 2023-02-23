@@ -53,20 +53,17 @@ def run_server():
                         clients.pop(client)
 
     def start():
-        def listen_for():
-            server.listen()
-            while True:
-                conn, addr = server.accept()
-                print(f'{conn} connected!')
-                for message in message_log:
-                    conn.send(str(message).encode(FORMAT))
-                conn.send('[CONNECTED]'.encode(FORMAT))
-                conn.send('[! THE FIRST MESSAGE YOU SEND WILL BE YOUR USERNAME !]'.encode(FORMAT))
-        listen = threading.Thread(target = listen_for)
-        listen.start()
-        print('SERVER STARTED')
-        thread = threading.Thread(target = receive, args = (conn, addr))
-        thread.start()
-        thread_brdcst = threading.Thread(target = broadcast)
-        thread_brdcst.start()
-    start()
+        server.listen()
+        while True:
+            conn, addr = server.accept()
+            print(f'{conn} connected!')
+            for message in message_log:
+                conn.send(str(message).encode(FORMAT))
+            conn.send('[CONNECTED]'.encode(FORMAT))
+            conn.send('[! THE FIRST MESSAGE YOU SEND WILL BE YOUR USERNAME !]'.encode(FORMAT))
+            thread = threading.Thread(target = receive, args = (conn, addr))
+            thread.start()
+            thread_brdcst = threading.Thread(target = broadcast)
+            thread_brdcst.start()
+    listen = threading.Thread(target = start)
+    listen.start()
