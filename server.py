@@ -21,6 +21,7 @@ def run_server():
 
     def receive(conn, addr):
         connected = True
+        print(f'connected: {addr}')
         while connected:
             message_len = conn.recv(HEADER).decode(FORMAT)
             print('message header received by server!')
@@ -47,6 +48,7 @@ def run_server():
                     try:
                         user = usernames[conn]
                         client.send(f"<{str(user)}> {message}".encode(FORMAT))
+                        print(f'sent: {addr}')
                     except:
                         clients.pop(client)
 
