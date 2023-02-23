@@ -67,3 +67,4 @@ def run_server():
             thread_brdcst = threading.Thread(target = broadcast)
             thread_brdcst.start()
     start()
+    print('SERVER STARTED')
