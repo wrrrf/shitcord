@@ -7,7 +7,7 @@ HEADER = 64
 CLIENT_PORT = 5051
 FORMAT = 'utf-8'
 DISCONNECT_MESSAGE = "!DISCONNECT"
-CLIENT_SERVER = socket.gethostbyname(socket.gethostname())
+CLIENT_SERVER = socket.gethostbyname(hostName)
 CLIENT_ADDR = (CLIENT_SERVER, CLIENT_PORT)
 
 client = ()
