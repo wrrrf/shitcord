@@ -25,15 +25,15 @@ def run_server():
         connected = True
         while connected:
             message_len = conn.recv(HEADER).decode(FORMAT)
-            #print('message header received by server!')
+            print('message header received by server!')
             if message_len:
                 message_len = int(message_len)
                 message = conn.recv(message_len).decode(FORMAT)
-                #print('message received by server: ' + message + '!')
+                print('message received by server: ' + message + '!')
             try:
                 messages.put((message, addr, conn))
                 message_log.append({addr, message})
-                #print('message queued:' + message + '!')
+                print('message queued:' + message + '!')
             except:
                 print("failed")
 
@@ -41,7 +41,7 @@ def run_server():
         while True:
             while not messages.empty():
                 message, addr, conn = messages.get()
-                #print(message)
+                print(message)
                 if conn not in clients:
                     clients.append(conn)
                     usernames.update({conn: message})
