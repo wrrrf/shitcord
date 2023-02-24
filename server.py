@@ -18,7 +18,7 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
     server.bind(ADDR)
 except:
-    print(f'could not bind to {ADDR}'})
+    print(f'could not bind to {ADDR}')
 
 def receive(conn, addr):
     connected = True
