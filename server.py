@@ -4,7 +4,6 @@ import queue
 import datetime
 
 def run_server():
-    print('STARTING SERVER')
     PORT = 5051
     SERVER = ''
     ADDR = (SERVER, PORT)
@@ -17,22 +16,24 @@ def run_server():
     usernames = {}
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind(ADDR)
+    try:
+        server.bind(ADDR)
+    except:
+        return()
 
     def receive(conn, addr):
         connected = True
-        print(f'connected: {addr}')
         while connected:
             message_len = conn.recv(HEADER).decode(FORMAT)
-            print('message header received by server!')
+            #print('message header received by server!')
             if message_len:
                 message_len = int(message_len)
                 message = conn.recv(message_len).decode(FORMAT)
-                print('message received by server: ' + message + '!')
+                #print('message received by server: ' + message + '!')
             try:
                 messages.put((message, addr, conn))
                 message_log.append({addr, message})
-                print('message queued:' + message + '!')
+                #print('message queued:' + message + '!')
             except:
                 print("failed")
 
@@ -40,7 +41,7 @@ def run_server():
         while True:
             while not messages.empty():
                 message, addr, conn = messages.get()
-                print(message)
+                #print(message)
                 if conn not in clients:
                     clients.append(conn)
                     usernames.update({conn: message})
@@ -48,13 +49,11 @@ def run_server():
                     try:
                         user = usernames[conn]
                         client.send(f"<{str(user)}> {message}".encode(FORMAT))
-                        print(f'sent: {addr}')
                     except:
                         clients.pop(client)
 
     def start():
         server.listen()
-        print('SERVER STARTED!')
         while True:
             conn, addr = server.accept()
             print(f'{conn} connected!')
@@ -66,5 +65,4 @@ def run_server():
             thread.start()
             thread_brdcst = threading.Thread(target = broadcast)
             thread_brdcst.start()
-    listen = threading.Thread(target = start)
-    listen.start()
+    start()
