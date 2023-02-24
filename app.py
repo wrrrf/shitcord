@@ -1,5 +1,6 @@
 import threading
 from server import run_server
+from client import client_start, client_send, received_messages
 from flask import Flask, render_template, request, send_from_directory
 import time
 
@@ -7,8 +8,6 @@ app = Flask(__name__)
 
 def server():
     run_server()
-    
-from client import client_start, client_send, received_messages
 
 messages_copy = ()
 
