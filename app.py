@@ -31,6 +31,7 @@ def submit_message():
     if submitted_message != (None):
         print(submitted_message)
         client_send(submitted_message)
+        print(received_messages)
     else:
         print('none')
     return ('', 204)
