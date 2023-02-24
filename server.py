@@ -53,6 +53,7 @@ def broadcast():
 
 def run_server():
     server.listen()
+    print(f'server listening on {ADDR}')
     while True:
         conn, addr = server.accept()
         print(f'{conn} connected!')
