@@ -11,15 +11,18 @@ CLIENT_SERVER = '127.0.0.1'
 CLIENT_ADDR = (CLIENT_SERVER, CLIENT_PORT)
 
 client = ()
-client_id = ()
+client_id = 0
 
 received_messages = []
 message = ()
 
 def client_start(id):
-
+    
+    global client_id
     global client
 
+    client_id += 1
+    
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect(CLIENT_ADDR)
 
