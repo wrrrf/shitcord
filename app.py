@@ -9,6 +9,8 @@ app = Flask(__name__)
 def server():
     run_server()
 
+client_id = (0)
+    
 messages_copy = ()
 
 server_start = threading.Thread(target = server)
@@ -18,8 +20,10 @@ form_message = ()
 
 @app.route('/', methods = ['GET', 'POST'])
 def messages():
-    start_client = threading.Thread(target = client_start)
+    global client_id
+    start_client = threading.Thread(target = client_start, args = client_id)
     start_client.start()
+    client_id += 1
     return render_template('index.html', message_recv = received_messages)
 
 @app.route('/create_post', methods = ['POST'])
