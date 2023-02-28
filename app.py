@@ -1,6 +1,6 @@
 import threading
 from server import run_server
-from client import client_start, client_send, received_messages
+from client import client_start, client_send, received_messages, client_id
 from flask import Flask, render_template, request, send_from_directory
 import time
 
@@ -8,8 +8,6 @@ app = Flask(__name__)
 
 def server():
     run_server()
-
-client_id = (0)
     
 messages_copy = ()
 
@@ -21,8 +19,6 @@ form_message = ()
 @app.route('/', methods = ['GET', 'POST'])
 def messages():
     global client_id
-    client_id += 1
-    print(client_id)
     start_client = threading.Thread(target = client_start, args = [client_id])
     start_client.start()
     return render_template('index.html', message_recv = received_messages)
