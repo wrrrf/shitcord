@@ -11,11 +11,12 @@ CLIENT_SERVER = '127.0.0.1'
 CLIENT_ADDR = (CLIENT_SERVER, CLIENT_PORT)
 
 client = ()
+client_id = ()
 
 received_messages = []
 message = ()
 
-def client_start():
+def client_start(id):
 
     global client
 
@@ -25,7 +26,7 @@ def client_start():
     while True:
         message = (client.recv(2048).decode(FORMAT))
         received_messages.append(message)
-        print ('message received~')
+        print (id)
 
 def client_send(input_msg):
 
