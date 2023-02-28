@@ -23,6 +23,7 @@ def messages():
 @app.route('/create_post', methods = ['POST'])
 def create_file():
     if request.method == 'POST':
+        print(received_messages)
         return render_template('messages.html', message_recv = received_messages)
 
 @app.route('/submit_message', methods = ['GET', 'POST'])
