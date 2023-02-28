@@ -21,7 +21,7 @@ form_message = ()
 @app.route('/', methods = ['GET', 'POST'])
 def messages():
     global client_id
-    start_client = threading.Thread(target = client_start, args = client_id)
+    start_client = threading.Thread(target = client_start, args = [client_id])
     start_client.start()
     client_id += 1
     return render_template('index.html', message_recv = received_messages)
