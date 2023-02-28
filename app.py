@@ -18,6 +18,8 @@ form_message = ()
 
 @app.route('/', methods = ['GET', 'POST'])
 def messages():
+    start_client = threading.Thread(target = client_start)
+    start_client.start()
     return render_template('index.html', message_recv = received_messages)
 
 @app.route('/create_post', methods = ['POST'])
@@ -36,10 +38,6 @@ def submit_message():
     else:
         print('none')
     return ('', 204)
-
-
-start_client = threading.Thread(target = client_start)
-start_client.start()
 
 if __name__ == '__main__':
     app.run(
