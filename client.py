@@ -31,26 +31,28 @@ def client_start(id):
         received_messages.append(message)
         print (id)
 
-def client_send(input_msg):
+def client_send(input_msg, id):
 
     global FORMAT
     global HEADER
     global client
+    global client_id
 
-    def send(msg):
+    def send(msg, id):
         message = str(msg).encode(FORMAT)
         msg_length = len(message)
         send_length = str(msg_length).encode(FORMAT)
         send_length += b' ' * (HEADER - len(send_length))
         client.send(send_length)
         client.send(message)
-        print('message sent!: ' + (message.decode(FORMAT)))
+        print('message sent!: ' + (message.decode(FORMAT) + f' id = {id}'))
 
-    def enter():
+    def enter(id):
 
+        id = client_id
         global DISCONNECT_MESSAGE
         message = input_msg
-        send(message)
+        send(message, id)
         if message == DISCONNECT_MESSAGE:
             exit()
-    enter()
+    enter(client_id)
