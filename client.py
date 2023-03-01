@@ -20,8 +20,6 @@ def client_start(id):
     
     global client_id
     global client
-
-    client_id += 1
     
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect(CLIENT_ADDR)
