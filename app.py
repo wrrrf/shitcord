@@ -21,9 +21,10 @@ current_id = ()
 def messages():
     global client_id
     client_id_copy = client_id
-    start_client = threading.Thread(target = client_start, args = [client_id])
-    start_client.start()
     client_id += 1
+    print(client_id)
+    start_client = threading.Thread(target = client_start, args = [client_id_copy])
+    start_client.start()
     return render_template('index.html', message_recv = received_messages, client_id = client_id_copy)
 
 @app.route('/create_post', methods = ['POST'])
