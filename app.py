@@ -15,6 +15,7 @@ server_start = threading.Thread(target = server)
 server_start.start()
 
 form_message = ()
+current_id = ()
 
 @app.route('/', methods = ['GET', 'POST'])
 def messages():
@@ -34,7 +35,7 @@ def submit_message():
     submitted_message = (request.form.get('text'))
     if submitted_message != (None):
         print(submitted_message)
-        client_send(submitted_message)
+        client_send(submitted_message, client_id)
         print(received_messages)
     else:
         print('none')
