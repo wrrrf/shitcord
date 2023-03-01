@@ -41,6 +41,7 @@ def client_send(input_msg, id):
         msg_length = len(message)
         send_length = int(msg_length)
         send_length += (HEADER - msg_length)
+        send_length = str(send_length)
         print(str(send_length))
         client.send(send_length.encode(FORMAT))
         client.send(message)
