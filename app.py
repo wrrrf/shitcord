@@ -22,7 +22,7 @@ def messages():
     global client_id
     start_client = threading.Thread(target = client_start, args = [client_id])
     start_client.start()
-    return render_template('index.html', message_recv = received_messages)
+    return render_template('index.html', message_recv = received_messages, client_id = client_id)
 
 @app.route('/create_post', methods = ['POST'])
 def create_file():
@@ -32,6 +32,7 @@ def create_file():
 
 @app.route('/submit_message', methods = ['GET', 'POST'])
 def submit_message():
+    client_id = (request.form.get('client_id'))
     submitted_message = (request.form.get('text'))
     if submitted_message != (None):
         print(submitted_message)
