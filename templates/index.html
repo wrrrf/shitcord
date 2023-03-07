@@ -23,6 +23,13 @@
 </h1>
 
 <script>
+    function submit_id() {
+        document.getElementById('client_id').submit()
+        console.log('id submitted!')
+    }
+</script>
+
+<script>
     function lock_form() {
         document.getElementById('enter').submit()
         console.log('form submitted!')
@@ -31,6 +38,7 @@
 
 <script>
     function submit_form() {
+        submit_id()
         $.ajax({
             type: "POST",
             url: "{{ url_for('submit_message') }}",
