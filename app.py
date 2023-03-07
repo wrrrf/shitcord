@@ -26,14 +26,14 @@ def messages():
     global connected_clients
     
     client_id_copy = client_id
-    client_copy = client
     client_id += 1
     print(client_id)
     start_client = threading.Thread(target = client_start, args = [client_id_copy])
     start_client.start()
+    client_copy = client
     connected_clients.append({
         "id": client_id_copy,
-        "conn": client
+        "conn": client_copy
     })
     print(connected_clients, "connected")
     return render_template('index.html', message_recv = received_messages, client_id = client_id_copy)
