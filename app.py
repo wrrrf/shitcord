@@ -31,7 +31,7 @@ def messages():
     start_client = threading.Thread(target = client_start, args = [client_id_copy])
     start_client.start()
     client_copy = client
-    print(client_copy)
+    print(client_copy, "CLIENT_COPY")
     connected_clients.append({
         "id": client_id_copy,
         "conn": client_copy
