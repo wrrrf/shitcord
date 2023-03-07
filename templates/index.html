@@ -11,7 +11,7 @@
 
 <div>
     <form id="enter" action="{{ url_for('submit_message') }}" method="POST">
-        <input type="text" name="client_id" value="{{ client_id }}">
+        <input type="text" name="client_id" value="{{ client_id }}" readonly>
         <input type="text" name="text" placeholder="Say Something!">
     </form>
 
