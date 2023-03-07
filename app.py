@@ -35,6 +35,7 @@ def messages():
         "id": client_id_copy,
         "conn": client
     })
+    print(connected_clients, "connected")
     return render_template('index.html', message_recv = received_messages, client_id = client_id_copy)
 
 @app.route('/create_post', methods = ['POST'])
@@ -51,6 +52,7 @@ def submit_message():
     client_id = (request.form.get('client_id'))
     print('client id obtained!:', client_id)
     submitted_message = (request.form.get('text'))
+    print(connected_clients)
     client_addr = connected_clients[int(client_id)]['conn']
     if submitted_message != (None):
         print(submitted_message)
