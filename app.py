@@ -48,10 +48,8 @@ def submit_message():
     
     global connected_clients
     
-    try:
-        client_id = int(request.form.get('client_id'))
-    except:
-        print('client id obtained!:', client_id)
+    client_id = int(request.form.get('client_id'))
+    print('client id obtained!:', client_id)
     submitted_message = (request.form.get('text'))
     client_addr = connected_clients[client_id]['conn']
     if submitted_message != (None):
