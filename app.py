@@ -1,7 +1,8 @@
 import threading
 from server import run_server
-from client import *
+import client
 from flask import Flask, render_template, request, send_from_directory
+from importlib import reload
 import time
 
 app = Flask(__name__)
@@ -21,31 +22,31 @@ connected_clients = []
 
 @app.route('/', methods = ['GET', 'POST'])
 def messages():
-    global client_id
     global connected_clients
     global client
     
-    client_id_copy = client_id
-    client_id += 1
-    print(client_id)
-    start_client = threading.Thread(target = client_start, args = [client_id_copy])
+    client_id_copy = client.client_id
+    client.client_id += 1
+    print(client.client_id)
+    start_client = threading.Thread(target = client.client_start, args = [client_id_copy])
     start_client.start()
-    client_copy = client
+    reload(client)
+    client_copy = client.client
     print(client_copy, "client_copy")
-    print(client_app, "client_app")
     print(client, "client")
     connected_clients.append({
         "id": client_id_copy,
-        "conn": client_copy
+        "conn": client.client
     })
+    client.print_client()
     print(connected_clients, "connected")
-    return render_template('index.html', message_recv = received_messages, client_id = client_id_copy)
+    return render_template('index.html', message_recv = client.received_messages, client_id = client_id_copy)
 
 @app.route('/create_post', methods = ['POST'])
 def create_file():
     if request.method == 'POST':
-        print(f'received_messages = {received_messages}')
-        return render_template('messages.html', message_recv = received_messages)
+        print(f'received_messages = {client.received_messages}')
+        return render_template('messages.html', message_recv = client.received_messages)
 
 @app.route('/submit_message', methods = ['GET', 'POST'])
 def submit_message():
@@ -59,8 +60,8 @@ def submit_message():
     client_addr = connected_clients[int(client_id)]['conn']
     if submitted_message != (None):
         print(submitted_message)
-        client_send(client_addr, submitted_message, client_id)
-        print(received_messages)
+        client.client_send(client_addr, submitted_message, client_id)
+        print(client.received_messages)
     else:
         print('none')
     return ('', 204)
