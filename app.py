@@ -1,10 +1,9 @@
 import threading
 from server import run_server
-from client import client_start, client_send, received_messages, client_id, client
+from client import client_start, client_send, received_messages, client_id
+from client import client as client_app
 from flask import Flask, render_template, request, send_from_directory
 import time
-
-client_app = client
 
 app = Flask(__name__)
 
