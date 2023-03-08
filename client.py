@@ -10,7 +10,9 @@ DISCONNECT_MESSAGE = "!DISCONNECT"
 CLIENT_SERVER = '127.0.0.1'
 CLIENT_ADDR = (CLIENT_SERVER, CLIENT_PORT)
 
-client = ()
+debug = (1)
+
+client = (10)
 client_id = 0
 
 received_messages = []
@@ -20,15 +22,26 @@ def client_start(id):
     
     global client_id
     global client
-    
+    global debug
+
+    print (client)
+
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect(CLIENT_ADDR)
-    print(f'{client} FROM CLIENT.PY')
+
+    print(client, "from client_start")
+
+    client = client
+
+    debug += 1
 
     while True:
         message = (client.recv(2048).decode(FORMAT))
         received_messages.append(message)
         print (id)
+
+def print_client():
+    print(client, "from print_client")
 
 def client_send(client_addr, input_msg, id):
 
@@ -36,6 +49,10 @@ def client_send(client_addr, input_msg, id):
     global HEADER
     global client
     global client_id
+    global debug
+
+    print(f'{client} FROM CLIENT.PY')
+    print(debug)
 
     def send(send_from, msg, id):
         message = str(msg).encode(FORMAT)
