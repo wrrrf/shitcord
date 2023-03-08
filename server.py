@@ -60,7 +60,6 @@ def run_server():
         for message in message_log:
             conn.send(str(message).encode(FORMAT))
         conn.send('[CONNECTED]'.encode(FORMAT))
-        conn.send('[! THE FIRST MESSAGE YOU SEND WILL BE YOUR USERNAME !]'.encode(FORMAT))
         thread = threading.Thread(target = receive, args = (conn, addr))
         thread.start()
         thread_brdcst = threading.Thread(target = broadcast)
