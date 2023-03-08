@@ -23,6 +23,7 @@ def client_start(id):
     
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect(CLIENT_ADDR)
+    print(client)
 
     while True:
         message = (client.recv(2048).decode(FORMAT))
