@@ -22,7 +22,7 @@ connected_clients = []
 @app.route('/', methods = ['GET', 'POST'])
 def messages():
     global client_id
-    global client
+    from client import client
     global connected_clients
     
     client_id_copy = client_id
