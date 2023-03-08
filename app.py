@@ -1,7 +1,6 @@
 import threading
 from server import run_server
-from client import client_start, client_send, received_messages, client_id
-import client
+from client import *
 from flask import Flask, render_template, request, send_from_directory
 import time
 
@@ -24,14 +23,14 @@ connected_clients = []
 def messages():
     global client_id
     global connected_clients
-    global client.client
+    global client
     
     client_id_copy = client_id
     client_id += 1
     print(client_id)
     start_client = threading.Thread(target = client_start, args = [client_id_copy])
     start_client.start()
-    client_copy = client.client
+    client_copy = client
     print(client_copy, "client_copy")
     print(client_app, "client_app")
     print(client, "client")
