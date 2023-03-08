@@ -23,7 +23,6 @@ connected_clients = []
 @app.route('/', methods = ['GET', 'POST'])
 def messages():
     global client_id
-    global client_app
     global connected_clients
     
     client_id_copy = client_id
@@ -31,6 +30,7 @@ def messages():
     print(client_id)
     start_client = threading.Thread(target = client_start, args = [client_id_copy])
     start_client.start()
+    global client_app
     client_copy = client_app
     print(client_copy, "client_copy")
     print(client_app, "client_app")
