@@ -4,6 +4,8 @@ from client import client_start, client_send, received_messages, client_id, clie
 from flask import Flask, render_template, request, send_from_directory
 import time
 
+client_app = client
+
 app = Flask(__name__)
 
 def server():
@@ -22,7 +24,7 @@ connected_clients = []
 @app.route('/', methods = ['GET', 'POST'])
 def messages():
     global client_id
-    global client
+    global client_app
     global connected_clients
     
     client_id_copy = client_id
@@ -30,8 +32,10 @@ def messages():
     print(client_id)
     start_client = threading.Thread(target = client_start, args = [client_id_copy])
     start_client.start()
-    client_copy = client
-    print(client_copy, "CLIENT_COPY")
+    client_copy = client_app
+    print(client_copy, "client_copy")
+    print(client_app, "client_app")
+    print(client, "client")
     connected_clients.append({
         "id": client_id_copy,
         "conn": client_copy
