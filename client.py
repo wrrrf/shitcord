@@ -12,7 +12,6 @@ CLIENT_ADDR = (CLIENT_SERVER, CLIENT_PORT)
 
 debug = (1)
 
-client = (10)
 client_id = 0
 
 received_messages = []
@@ -21,13 +20,13 @@ message = ()
 def client_start(id):
     
     global client_id
-    global client
     global debug
-
-    print (client)
+    global client
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect(CLIENT_ADDR)
+
+    print (client)
 
     print(client, "from client_start")
 
