@@ -13,6 +13,7 @@ messages = queue.Queue()
 message_log = []
 clients = []
 usernames = {}
+sent_messages = []
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
@@ -50,6 +51,7 @@ def broadcast():
                     client.send(f"<{str(user)}> {message}".encode(FORMAT))
                 except:
                     clients.pop(client)
+            sent_messages.append(f'<{str(user)}> {message}')
 
 def run_server():
     server.listen()
