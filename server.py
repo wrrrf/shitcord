@@ -56,6 +56,7 @@ def broadcast():
             sent_messages.append(f'<{str(user)}> {message}')
 
 def run_server():
+    print("server starting")
     server.listen()
     print(f'server listening on {ADDR}')
     while True:
