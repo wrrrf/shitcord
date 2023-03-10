@@ -23,7 +23,9 @@ except:
 
 def receive(conn, addr):
     connected = True
+    print("connected == True")
     while connected:
+        print("server.recv started")
         message_len = conn.recv(HEADER).decode(FORMAT)
         print('message header received by server!')
         if message_len:
