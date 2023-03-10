@@ -14,6 +14,7 @@ server_start.start()
 
 form_message = ()
 current_id = ()
+connected_clients = []
 
 @app.route('/', methods = ['GET', 'POST'])
 def messages():
