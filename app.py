@@ -31,7 +31,7 @@ def messages():
     print(client.client)
     print(client_copy, "client_copy")
     print(client, "client")
-    connected_clients.append({
+    connected_clients = connected_clients.append({
         "id": client_id_copy,
         "conn": client_copy
     })
