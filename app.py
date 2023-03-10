@@ -31,10 +31,11 @@ def messages():
     print(client.client)
     print(client_copy, "client_copy")
     print(client, "client")
-    connected_clients = connected_clients.append({
+    connected_clients.append({
         "id": client_id_copy,
         "conn": client_copy
     })
+    print(connected_clients, "CONNECTED_CLIENTS")
     client.print_client()
     print(connected_clients, "connected")
     return render_template('index.html', message_recv = server.sent_messages, client_id = client_id_copy)
