@@ -38,13 +38,13 @@ def messages():
     print(connected_clients, "CONNECTED_CLIENTS")
     client.print_client()
     print(connected_clients, "connected")
-    return render_template('index.html', message_recv = server.sent_messages, client_id = client_id_copy)
+    return render_template('index.html', message_recv = server.message_log, client_id = client_id_copy)
 
 @app.route('/create_post', methods = ['POST'])
 def create_file():
     if request.method == 'POST':
-        print(f'received_messages = {server.sent_messages}')
-        return render_template('messages.html', message_recv = server.sent_messages)
+        print(f'received_messages = {server.message_log}')
+        return render_template('messages.html', message_recv = server.message_log)
 
 @app.route('/submit_message', methods = ['GET', 'POST'])
 def submit_message():
