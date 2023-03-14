@@ -23,7 +23,7 @@ except:
 
 def receive(conn, addr):
     connected = True
-    print("connected == True")
+    print("SERVER connected == True")
     while connected:
         print("server.recv started")
         message_len = conn.recv(HEADER).decode(FORMAT)
@@ -40,7 +40,9 @@ def receive(conn, addr):
             print("failed")
 
 def broadcast():
+    print("BROADCAST MESSAGE STARTED line 43")
     while True:
+        print("BROADCAST MESSAGES WHILE = TRUE line 45") 
         while not messages.empty():
             message, addr, conn = messages.get()
             print(message)
