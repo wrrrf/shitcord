@@ -64,6 +64,7 @@ def run_server():
         print(f'{conn} connected!')
         for message in message_log:
             conn.send(str(message).encode(FORMAT))
+        print("message log sent")
         conn.send('[CONNECTED]'.encode(FORMAT))
         thread = threading.Thread(target = receive, args = (conn, addr))
         thread.start()
