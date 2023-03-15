@@ -57,8 +57,8 @@ def broadcast():
 
 def run_server():
     print("server starting")
-    server.listen()
     print(f'server listening on {ADDR}')
+    server.listen()
     while True:
         print('server connecting . . .')
         conn, addr = server.accept()
