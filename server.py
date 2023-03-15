@@ -60,6 +60,7 @@ def run_server():
     server.listen()
     print(f'server listening on {ADDR}')
     while True:
+        print('server connecting . . .')
         conn, addr = server.accept()
         print(f'{conn} connected!')
         for message in message_log:
