@@ -26,10 +26,6 @@ def client_start(id):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect(CLIENT_ADDR)
 
-    print (client)
-
-    print(client, "from client_start")
-
     client = client
 
     debug += 1
@@ -37,10 +33,9 @@ def client_start(id):
     while True:
         message = (client.recv(2048).decode(FORMAT))
         received_messages.append(message)
-        print (id)
 
 def print_client():
-    print(client, "from print_client")
+    pass
 
 def client_send(client_addr, input_msg, id):
 
@@ -49,9 +44,6 @@ def client_send(client_addr, input_msg, id):
     global client
     global client_id
     global debug
-
-    print(f'{client} FROM CLIENT.PY')
-    print(debug)
 
     def send(send_from, msg, id):
         message = str(msg).encode(FORMAT)
