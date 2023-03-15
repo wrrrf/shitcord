@@ -23,27 +23,20 @@ def messages():
     
     client_id_copy = client.client_id
     client.client_id += 1
-    print(client.client_id)
     start_client = threading.Thread(target = client.client_start, args = [client_id_copy])
     start_client.start()
     reload(client)
     client_copy = (client.client)
-    print(client.client)
-    print(client_copy, "client_copy")
-    print(client, "client")
     connected_clients.append({
         "id": client_id_copy,
         "conn": client_copy
     })
-    print(connected_clients, "CONNECTED_CLIENTS")
     client.print_client()
-    print(connected_clients, "connected")
     return render_template('index.html', message_recv = server.message_log, client_id = client_id_copy)
 
 @app.route('/create_post', methods = ['POST'])
 def create_file():
     if request.method == 'POST':
-        print(f'received_messages = {server.message_log}')
         return render_template('messages.html', message_recv = server.message_log)
 
 @app.route('/submit_message', methods = ['GET', 'POST'])
@@ -52,12 +45,10 @@ def submit_message():
     global connected_clients
     
     client_id = (request.form.get('client_id'))
-    print('client id obtained!:', client_id)
     submitted_message = (request.form.get('text'))
     print(connected_clients)
     client_addr = connected_clients[int(client_id)]['conn']
     if submitted_message != (None):
-        print(submitted_message)
         client.client_send(client_addr, submitted_message, client_id)
         print(server.sent_messages)
     else:
