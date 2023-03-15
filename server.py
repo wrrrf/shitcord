@@ -67,5 +67,6 @@ def run_server():
         conn.send('[CONNECTED]'.encode(FORMAT))
         thread = threading.Thread(target = receive, args = (conn, addr))
         thread.start()
+        print("recv started from run_server")
         thread_brdcst = threading.Thread(target = broadcast)
         thread_brdcst.start()
